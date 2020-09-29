@@ -1,0 +1,71 @@
+.burger{
+    display: inherit;
+    position: fixed;
+    right: 0;
+    width: 80vw;
+    list-style: none;
+    line-height: 3em;
+    font-size: 1.2em;
+    z-index: 100;
+    transition: 500ms;
+
+    &__utility{
+        color: black;
+    }
+
+    &__size{
+        display: inherit;
+        align-self: center;
+        font-size: 1rem;
+        padding: 1%;
+    }
+
+    &__open{
+        top: 0;
+        margin: 0;
+    }
+
+    &__closed{
+        top: -130%;
+    }
+
+    &__ul{
+        text-align: center;
+        width: 100%;
+        height: 100vh;
+        margin: 0;
+        padding:3rem 0;
+        background-color: rgba(3,2,3, 0.7);
+        list-style: none;
+        line-height: 3rem;
+        font-size: 1.2rem;
+    }
+
+    &__link{
+        text-decoration: none;
+        color: black;
+        font-size: 1.2rem;
+        transition: 500ms;
+    }
+
+    &__shutdown{
+        position: absolute;
+        right: 5%;
+        top: 1rem;
+        padding: 0 0.5rem;
+        font-size: 2.2rem;
+        color: black;
+    }
+}
+
+.header{
+    &__burgerbox{
+        align-self: center;
+    }
+
+    &__burger{
+        border-top: 2px solid white;
+        margin-top: 0.3em;
+        width: 2.6em;
+    }
+}

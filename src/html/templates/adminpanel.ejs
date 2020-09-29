@@ -1,0 +1,16 @@
+<%- include('../partials/headstart') %>
+<!-- <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css"> -->
+
+<%- include('../partials/headend') %>
+
+<form action="" method="post" id="addItem">
+    <input type="text" name="name" id="name" placeholder="navn">
+    <input type="number" name="price" id="price" placeholder="price">
+    <label for="image">upload image. Only accepts .jpg</label>
+    <input type="file" name="image" id="image"><p class="imageinfo"></p>
+    <textarea name="message" id="message" id="" cols="30" rows="10" placeholder="Describe your item"></textarea>
+    <button type="submit" id="submit">submit</button>
+</form>
+
+<script src="/assets/javascript/adminpanel.js"></script>
+<%- include('../partials/afterfooter') %>

@@ -1,0 +1,64 @@
+.header{
+    width: 100%;
+    height: 40vh;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+
+    &__contentwrapper{
+        width: 100%;
+        background-color: $base-color;
+    }
+
+    &__content{
+        width: 80%;
+        margin: auto;
+        display: flex;
+        justify-content: space-between;
+        line-height: 2em;
+    }
+
+    &__logo{
+        align-self: center;
+        display: flex;
+        align-items: center;
+    }
+
+    &__logoimg{
+        width: 5%;
+    }
+
+    &__nav{
+        width: 70%;
+        display: flex;
+        justify-content: space-between;
+        list-style: none;
+    }
+
+    &__li{
+        font-size: 0.8em;
+        white-space:  wrap;
+        text-overflow: none;
+        overflow: none;
+    }
+
+    &__link{
+        text-decoration: none;
+        color: $header-link;
+    }
+
+    &__textbox{
+        width: 80%;
+        margin: 5em auto 0 auto;
+    }
+
+    &__title{
+        margin-block-start: 0;
+        margin-block-end: 0;
+        color: $base-color;
+        font-size: 2em;
+    }
+
+    &__text{
+        color: $base-color;
+    }
+}

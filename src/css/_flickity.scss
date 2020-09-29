@@ -1,0 +1,12 @@
+.main-carousel{
+    margin-top: 10em;
+}
+
+.carousel-cell{
+    width: 100%;
+    text-align:center;
+
+    & > img {
+        height: 300px;
+    }
+}
