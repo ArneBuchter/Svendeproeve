@@ -1,0 +1,20 @@
+.about{
+    width: $innerwidth;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    &__card{
+        width: 300px;
+    }
+
+    &__heading{
+        color: $important-text;
+    }
+
+    &__text{
+        font-size: 0.8em;
+
+    }
+}
