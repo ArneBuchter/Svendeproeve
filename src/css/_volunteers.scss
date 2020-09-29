@@ -1,0 +1,68 @@
+.volunteers{
+    width: 100%;
+    background-color: $footer-color;
+
+    &__mainheading{
+        width: $innerwidth;
+        color: $important-text;
+        padding-top: 1em;
+        margin: auto;
+    }
+
+    &__graybox{
+        background-color: $graybox;
+        border-top: 1px dotted $header-link;
+        border-bottom: 1px dotted $header-link;
+        min-height: 1em;
+    }
+
+    &__heading{
+        line-height: 3em;
+        font-size: 1em;
+        margin: 0 1em;
+        margin-block-start: 0;
+        margin-block-end: 0;
+    }
+
+    &__content{
+        width: $innerwidth;
+        margin: auto;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__card{
+        position: relative;
+        margin-top: 1em;
+        background-color: $base-color;
+        width: 300px;
+        box-sizing: border-box;
+    }
+
+    &__contentbox{
+        padding: 0 1em;
+    }
+
+    &__image{
+        margin-top: 1em;
+        width: 100%;
+    }
+
+    &__text{
+        font-size: 0.8em;
+        margin-bottom: 10em;
+    }
+
+    &__footer{
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        min-height: 1em;
+    }
+
+    &__footertext{
+        font-style: italic;
+        font-size: 0.8em;
+    }
+}

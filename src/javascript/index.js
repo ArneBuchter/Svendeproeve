@@ -26,7 +26,6 @@ document.addEventListener('DOMContentLoaded', () => {
         let template = document.querySelector('.about__template');
         let list = document.querySelector('.about');
         data.forEach(element => {
-            console.log(element) 
             let clone = template.content.cloneNode(true);
             clone.querySelector('.about__heading').innerText = element.title
             clone.querySelector('.about__text').innerText = element.content
@@ -42,12 +41,16 @@ document.addEventListener('DOMContentLoaded', () => {
     .then(response => response.json())
     .then(data => {
         let template = document.querySelector('.volunteers__template');
-        let list = document.querySelector('.volunteers'); 
+        let list = document.querySelector('.volunteers__content'); 
         data.forEach(element => {
             console.log(element) 
             let clone = template.content.cloneNode(true);
             clone.querySelector('.volunteers__heading').innerText = element.title
+            clone.querySelector('.volunteers__image').src = element.asset.url
             clone.querySelector('.volunteers__text').innerText = element.content
+            if(element.content != undefined){
+                clone.querySelector('.volunteers__footertext').innerText = element.extra
+            }
             list.appendChild(clone)
         });
     })
