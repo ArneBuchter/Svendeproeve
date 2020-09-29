@@ -10,7 +10,7 @@
     }
 
     &__content{
-        width: 80%;
+        width: $innerwidth;
         margin: auto;
         display: flex;
         justify-content: space-between;
@@ -47,7 +47,7 @@
     }
 
     &__textbox{
-        width: 80%;
+        width: $innerwidth;
         margin: 5em auto 0 auto;
     }
 
