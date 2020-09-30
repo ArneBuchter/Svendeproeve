@@ -1,0 +1,49 @@
+.nyhedsbrev{
+    background-color: $footer-color;
+
+    &__content{
+        width: $innerwidth;
+        padding: 1em 0;
+        margin: auto;
+    }
+
+    &__heading{
+        color: $important-text;
+    }
+
+    &__form{
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__firstline{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between ;
+    }
+
+    &__inputcontent{
+        justify-self: end;
+        align-self: center;
+    }
+
+    &__input{
+        border-style: none;
+        border: 1px dotted $header-link;
+    }
+
+    &__text{
+        font-size: 0.8em;
+    }
+
+    &__submit{
+        align-self: flex-end;
+        background-color: $important-text;
+        width: 5em;
+        height: 4vh;
+        color: $base-color;
+        border-radius: 5px;
+        border-style: none;
+        justify-self: end;
+    }
+}
