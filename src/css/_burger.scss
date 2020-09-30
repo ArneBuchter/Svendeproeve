@@ -35,7 +35,7 @@
         height: 100vh;
         margin: 0;
         padding:3rem 0;
-        background-color: rgba(3,2,3, 0.7);
+        background-color: rgba(3,2,3, 0.9);
         list-style: none;
         line-height: 3rem;
         font-size: 1.2rem;
@@ -43,7 +43,7 @@
 
     &__link{
         text-decoration: none;
-        color: black;
+        color: $base-color;
         font-size: 1.2rem;
         transition: 500ms;
     }
@@ -54,18 +54,26 @@
         top: 1rem;
         padding: 0 0.5rem;
         font-size: 2.2rem;
-        color: black;
+        color: $base-color;
+    }
+
+    &__burgerbox{
+        align-self: center;
     }
 }
 
 .header{
-    &__burgerbox{
-        align-self: center;
-    }
-
     &__burger{
-        border-top: 2px solid white;
-        margin-top: 0.3em;
+        border-top: 2px solid black;
+        margin: 0.3em 0 0 1em;
         width: 2.6em;
+    }
+}
+
+@media screen and (min-width: 1000px){
+    .burger{
+        &__size{
+        display: none;
+        }
     }
 }
