@@ -1,10 +1,23 @@
 <%- include('../partials/headstart') %>
-<!-- <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css"> -->
+<link rel="stylesheet" href="/assets/css/singleview.css">
 
 <%- include('../partials/headend') %>
-<h1>Hello World!</h1>
+<%- include('../partials/header') %>
 
-<%- include('../partials/flickety') %> -->
+<main class="singleview">
+    <article class="singleview__content">
+        <h1 class="singleview__mainheading">Er det her dit nye kæledyr</h1>
+        <div class="singleview__contentbox">
+            <h2 class="singleview__name"></h2>
+            <img class="singleview__image" src="" alt="" srcset="">
+        
+            <p class="singleview__text"></p>
+            <p class="singleview__age"></p>
+            <p class="singleview__arrived"></p>
+        </div>
+    </article>
+</main>
 
-<script src="/dist/assets/javascript/singleview.js"></script>
+<%- include('../partials/footer') %>
+<script src="/assets/javascript/singleveiw.js"></script>
 <%- include('../partials/afterfooter') %>

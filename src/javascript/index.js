@@ -74,8 +74,11 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log(data)
         let template = document.querySelector('.adobterdyr__template');
         let list = document.querySelector('.adopterdyr__cardcontent');
+        document.querySelector('.adobterdyr__text').innerText = data.length + ' dyr'
         data.forEach(element => {
             let clone = template.content.cloneNode(true);
+            console.log(element)
+            clone.querySelector('.adopterdyr__card').href = `/singleview/index.html?id=${element.id}`
             clone.querySelector('.adopterdyr__image').src = element.asset.url
             clone.querySelector('.adopterdyr__cardheading').innerText = element.name
             clone.querySelector('.adopterdyr__cardtext').innerText = element.description

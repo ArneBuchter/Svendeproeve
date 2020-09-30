@@ -38,18 +38,24 @@
     }
 
     &__card{
+        margin: 1em 0;
         display: flex;
-        width: 30vw;
+        width: 450px;
         height: 100%;
         border: 1px dotted $header-link;
         margin-inline-start: 0;
         margin-inline-end: 0;
+        box-sizing: border-box;
+        text-decoration: none;
+        font-size: 0.8em;
+        color: black;
     }
 
     &__image{
-        width: 10vw;
-        height: 30vh;
+        width: 150px;
+        height: 220px;
         object-fit: cover;
+        margin-right: 0.4em;
     }
 
     &__cardheading{
@@ -58,7 +64,20 @@
     }
 
     &__cartdtext{
-        margin-left: 0.4em;
         font-size: 0.7em;
+    }
+}
+
+@media screen and (max-width: 600px){
+    .adopterdyr{
+        &__card{
+            flex-direction: column;
+            width: 220px;
+        }
+
+        &__image{
+            width: 220px;
+            height: 220px;
+        }
     }
 }

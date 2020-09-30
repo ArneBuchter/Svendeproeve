@@ -23,10 +23,6 @@
         margin-block-end: 0;
     }
 
-    &__partnere{
-        margin-right: 5em;
-    }
-
     &__ul{
         padding-inline-start: 0;
     }
@@ -42,5 +38,11 @@
     &__copy{
         text-align: center;
         font-size: 0.8em;
+    }
+}
+
+@media screen and (max-width: 768px){
+    .footer__content{
+        flex-direction: column;
     }
 }
