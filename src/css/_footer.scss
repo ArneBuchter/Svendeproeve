@@ -3,7 +3,7 @@
     background-color: $footer-color;
 
     &__content{
-        width: 80%;
+        width: $innerwidth;
         margin: auto;
         display: flex;
         justify-content: space-between;

@@ -9,10 +9,16 @@ document.addEventListener('DOMContentLoaded', () => {
     .then(response => response.json())
     .then(data => {
         data.forEach(element => {
+            console.log(element)
             if(element.asset.id === 11){
                 document.querySelector('.header').style.backgroundImage = `url('${element.asset.url}')`
                 document.querySelector('.header__title').innerText = element.title
                 document.querySelector('.header__text').innerText = element.content
+            }
+            if(element.asset.id === 12){
+                document.querySelector('.dyrinod').style.backgroundImage = `url('${element.asset.url}')`
+                document.querySelector('.dyrinod__heading').innerText = element.title
+                document.querySelector('.dyrinod__text').innerText = element.content
             }
         });
     })
@@ -43,7 +49,6 @@ document.addEventListener('DOMContentLoaded', () => {
         let template = document.querySelector('.volunteers__template');
         let list = document.querySelector('.volunteers__content'); 
         data.forEach(element => {
-            console.log(element) 
             let clone = template.content.cloneNode(true);
             clone.querySelector('.volunteers__heading').innerText = element.title
             clone.querySelector('.volunteers__image').src = element.asset.url

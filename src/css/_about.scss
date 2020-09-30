@@ -1,13 +1,10 @@
 .about{
     width: $innerwidth;
     margin: auto;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-
-    &__card{
-        width: 300px;
-    }
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    grid-auto-rows: auto;
+    gap: 1em;
 
     &__heading{
         color: $important-text;

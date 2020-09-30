@@ -1,0 +1,22 @@
+.dyrinod{
+    width: 100%;
+    height: 40vh;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+
+    &__content{
+        width: $innerwidth;
+        margin: auto;
+        color: $base-color;
+    }
+
+    &__heading{
+        font-size: 3em;
+        margin-block-start: 0;
+        margin-block-end: 0;
+    }
+}
