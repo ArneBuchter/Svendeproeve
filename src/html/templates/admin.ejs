@@ -1,14 +1,16 @@
 <%- include('../partials/headstart') %>
-
+<link rel="stylesheet" href="/assets/css/admin.css">
 <%- include('../partials/headend') %>
 
-<main>
-    <form action="" method="post" id="login">
-        <input type="text" name="username" id="username" class="username" value="" placeholder="username">
-        <input type="password" name="password" class="password" id="password" value="" placeholder="Password">
-        <button type="submit" id="submit" class="form__button">login</button>
-    </form>
-    <p class="form__udfyld"></p>
+<main class="admin">
+    <section class="admin__formbox">        
+        <form class="admin__form" action="" method="post" id="login">
+            <input type="text" name="username" id="username" class="admin__input" value="" placeholder="username">
+            <input type="password" name="password" class="admin__input" id="password" value="" placeholder="Password">
+            <button type="submit" id="submit" class="admin__button">login</button>
+        </form>
+        <p class="form__udfyld"></p>
+    </section>
 </main>
 
 

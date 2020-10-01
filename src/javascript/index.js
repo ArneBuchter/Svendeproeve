@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     .then(response => response.json())
     .then(data => {
         data.forEach(element => {
+            
             if(element.id === 1){
                 document.querySelector('.header').style.backgroundImage = `url('${element.asset.url}')`
                 document.querySelector('.header__title').innerText = element.title
@@ -38,6 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let template = document.querySelector('.about__template');
         let list = document.querySelector('.about');
         data.forEach(element => {
+            console.log(element)
             let clone = template.content.cloneNode(true);
             clone.querySelector('.about__heading').innerText = element.title
             clone.querySelector('.about__text').innerText = element.content

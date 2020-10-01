@@ -1,0 +1,39 @@
+@import 'variabel';
+@import 'base';
+
+.admin{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 2em;
+
+    &__formbox{
+        background-color: $footer-color;
+        width: 250px;
+        height: 250px;
+        border: 1px dotted $header-link;
+        border-radius: 10px;
+    }
+
+    &__form{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 2em;
+    }
+
+    &__input{
+        margin: 1em 0;
+        border-radius: 5px;
+    }
+
+    &__button{
+        background-color: $important-text;
+        color: $base-color;
+        margin-top: 1em;
+        border-radius: 5px;
+    }
+}
+
+@import 'footer'

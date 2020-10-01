@@ -1,16 +1,78 @@
 <%- include('../partials/headstart') %>
-<!-- <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css"> -->
-
+<link rel="stylesheet" href="/assets/css/adminpanel.css">
 <%- include('../partials/headend') %>
 
-<form action="" method="post" id="addItem">
-    <input type="text" name="name" id="name" placeholder="navn">
-    <input type="number" name="price" id="price" placeholder="price">
-    <label for="image">upload image. Only accepts .jpg</label>
-    <input type="file" name="image" id="image"><p class="imageinfo"></p>
-    <textarea name="message" id="message" id="" cols="30" rows="10" placeholder="Describe your item"></textarea>
-    <button type="submit" id="submit">submit</button>
-</form>
+
+<main class="adminpanel">
+
+    <!--........sections.......-->
+    <section class="adminpanel__header">
+        <form action="" method="post" id="sections">
+            <select name="" id="">
+                <option value="1">Topbillede</option>
+                <option value="2">1812 billede</option>
+                <option value="3">Adopterbillede</option>
+            </select>
+            <label for="image">udskift billedet</label>
+            <input type="file" name="image" id="image"><p class="imageinfo"></p>
+            <input class="overskrift" type="text" name="name" id="name" placeholder="Overskrift">
+            <input class="tekst" type="text" name="name" id="name" placeholder="Kort tekst">
+            <button type="submit" id="section__submit">Opdater</button>
+        </form>
+    </section>
+
+    <!--....abouts....-->
+    <section class="adminpanel__abouts">
+        <form action="" method="post" id="abouts">
+            <select name="" id="">
+                <option value="1">Om os</option>
+                <option value="2">Dyr og mennesker</option>
+                <option value="3">Mad og forbrug</option>
+                <option value="ny">Tilføj ny</option>
+            </select>
+            <input class="overskrift" type="text" name="name" id="name" placeholder="Overskrift">
+            <textarea name="message" id="message" id="" cols="30" rows="10" placeholder="Describe your item"></textarea>
+            <button type="submit" id="abouts__submit">Opdater</button>
+        </form>
+    </section>
+
+    <!--volunteers-->
+    <section class="adminpanel__volunteers">
+        <form action="" method="post" id="volunteers">
+            <select name="" id="">
+                <option value="1">Om os</option>
+                <option value="2">Dyr og mennesker</option>
+                <option value="3">Mad og forbrug</option>
+                <option value="ny">Tilføj ny</option>
+            </select>
+            <input class="overskrift" type="text" name="name" id="name" placeholder="Overskrift">
+            <label for="image">udskift billedet</label>
+            <input type="file" name="image" id="image"><p class="imageinfo"></p>
+            <textarea name="message" id="message" id="" cols="30" rows="10" placeholder="Describe your item"></textarea>
+            <input class="tekst" type="text" name="name" id="name" placeholder="fodnote">
+            <button type="submit" id="Volunteers__submit">Opdater</button>
+        </form>
+    </section>
+
+    <!--animals-->
+    <section class="adminpanel__animals">
+        <form action="" method="post" id="animals">
+            <select name="" id="">
+                <option value="1">Om os</option>
+                <option value="2">Dyr og mennesker</option>
+                <option value="3">Mad og forbrug</option>
+                <option value="ny">Tilføj ny</option>
+            </select>
+            <label for="image">udskift billedet</label>
+            <input type="file" name="image" id="image"><p class="imageinfo"></p>
+            <input class="overskrift" type="text" name="name" id="name" placeholder="Navn">
+            <textarea name="message" id="message" id="" cols="30" rows="10" placeholder="Describe your item"></textarea>
+            <input class="tekst" type="text" name="name" id="name" placeholder="Alder">
+            <button type="submit" id="animals__submit">Opdater</button>
+        </form>
+    </section>
+
+</main>
 
 <script src="/assets/javascript/adminpanel.js"></script>
 <%- include('../partials/afterfooter') %>
