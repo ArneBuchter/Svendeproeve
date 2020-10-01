@@ -1,0 +1,25 @@
+@import 'variabel';
+@import 'base';
+@import 'header';
+@import 'burger';
+@import 'nyhedsbrev';
+
+.tilmeldafmeld{
+    width: $innerwidth;
+    display: flex;
+    align-items: center;
+    height: 200px;
+    margin: auto;
+
+    &__whitespace{
+        height: 200px;
+    }
+
+    &__response{
+        width: $innerwidth;
+        margin: 2em auto;
+        text-align: center;
+    }
+}
+
+@import 'footer'

@@ -1,14 +1,37 @@
-document.addEventListener('DOMContentLoaded', () => {
+ document.addEventListener('DOMContentLoaded', () => {
 
     let login = document.querySelector('#login')
     let typedUsername;
     let typedPassword;
+    let getToken = 'http://localhost:4000/auth/token'
 
     document.querySelector('#submit').addEventListener('click', (e) => {
         e.preventDefault()
         if(valider(login)){
             //post til api for at få token
-            async function postData(url = '', data = {}) {
+
+            const getToken = 'http://localhost:4000/auth/token'
+            let token;
+            
+            fetch(getToken, {  
+                method: 'POST',  
+                headers: {  
+                    'Content-Type': 'application/json'
+                  //  'Content-Type': 'application/x-www-form-urlencoded'  
+                },  
+                 body: JSON.stringify({
+                'username' : 'admin',
+                'password' : '1234'
+              })
+            })
+            .then(function (data) {  
+              console.log('Request success: ', data);  
+            })  
+            .catch(function (error) {  
+              console.log('Request failure: ', error);  
+            });
+
+ /*           async function postData(url = '', data = {}) {
                 // Default options are marked with *
                 const response = await fetch(url, {
                   method: 'POST', // *GET, POST, PUT, DELETE, etc.
@@ -54,4 +77,4 @@ document.addEventListener('DOMContentLoaded', () => {
             return true
         }
     }
-})
+}) */

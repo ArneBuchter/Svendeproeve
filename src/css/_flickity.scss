@@ -7,7 +7,15 @@
     text-align:center;
 
     & > img {
-        height: 300px;
+        height: 25vh;
     }
 
 }
+
+@media screen and (min-width: 768px){
+    .carousel-cell{
+        & > img {
+            height: 40vh;
+        }
+    }
+} 

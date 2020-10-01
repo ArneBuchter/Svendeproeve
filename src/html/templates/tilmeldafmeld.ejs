@@ -1,0 +1,39 @@
+<%- include('../partials/headstart') %>
+<link rel="stylesheet" href="/assets/css/tilmeldafmeld.css">
+
+<%- include('../partials/headend') %>
+<%- include('../partials/header') %>
+
+<main>
+    <section class="tilmeldafmeld">
+        <p class="tilmeldafmeld__besked">
+            Hej
+            <span id="navn"></span>
+            .Tak for din tilmelding til vores nyhedsbrev Her på siden er det også muligt at afmelde sit nyhedsbrev. Du vil derfor altid få et link til denne side i bunden af dit nyhedsbrev.
+        </p>
+    </section>
+    <section class="nyhedsbrev">
+        <div class="nyhedsbrev__content">
+            <h2 class="nyhedsbrev__heading">Afmeld vores nyhedsbrev</h2>
+            <form class="nyhedsbrev__form" action="" method="post" id="form">
+                <div class="nyhedsbrev__firstline">
+                    <p class="nyhedsbrev__text">Her kan du afmelde vores nyhedsbrev. Vi håber at se dig snart igen.</p>
+                    <div class="nyhedsbrev__inputcontent">
+                        <input class="nyhedsbrev__input" type="email" name="email" id="email" placeholder="Email">
+                        <input class="nyhedsbrev__input" type="text" name="name" id="name" placeholder="Navn">
+                    </div>
+                </div>
+                <button class="nyhedsbrev__submit" type="submit" id="submit">Afmeld</button>
+            </form>
+            <p class="form__udfyld"></p>
+        </div>
+    </section>
+
+    <div class="tilmeldafmeld__whitespace">
+        <p class="tilmeldafmeld__response"></p>
+    </div>
+</main>
+
+<%- include('../partials/footer') %>
+<script src="/assets/javascript/tilmeldafmeld.js"></script>
+<%- include('../partials/afterfooter') %>

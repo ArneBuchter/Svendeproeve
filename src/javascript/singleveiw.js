@@ -11,21 +11,28 @@ document.addEventListener('DOMContentLoaded', () => {
     }) //fetch
     .then(response => response.json())
     .then(data => {
-        console.log(data)
+
         let rawdata = data.createdAt
         let rawmonth = rawdata.substr(5,7)
         let rawtime = rawdata.substr(0,10)
-        let year = rawtime.substr(0,4)
-        let month = rawmonth.substr(0,2)
-        let day = rawtime.substr(8,10)
-        let arrived = rawtime
-        console.log( month )
+        let thatyear = parseInt(rawtime.substr(0,4))
+        let thatmonth = parseInt(rawmonth.substr(0,2))
+        let thatday = parseInt(rawtime.substr(8,10))
+        let d = new Date();
+        let thisday = d.getUTCDate()
+        let thismonth = d.getUTCMonth()
+        let thisyear = d.getUTCFullYear()
+        let year = thisyear - thatyear
+        let month = thismonth -thatmonth
+        let day = thisday - thatday
+
+        let arrived =year + ' år '+ month + ' måneder og ' + day +' dage siden'
 
         document.querySelector(".singleview__image").src = data.asset.url
         document.querySelector(".singleview__name").innerText = data.name
         document.querySelector(".singleview__text").innerText = data.description
-        document.querySelector(".singleview__age").innerText = data.age + ' years old'
-        document.querySelector(".singleview__arrived").innerText = arrived
+        document.querySelector(".singleview__age").innerText = data.age + ' år gammel'
+        document.querySelector(".singleview__arrived").innerText ='Ankom for ' + arrived
 
     })
 

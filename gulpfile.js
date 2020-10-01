@@ -3,7 +3,7 @@ const ejs = require('gulp-ejs');
 const rename = require('gulp-rename');
 const connect = require('gulp-connect');
 const sass = require('gulp-sass');
-const babel = require('gulp-babel');
+//const babel = require('gulp-babel');
 const imagemin = require('gulp-imagemin');
 
 sass.compiler = require('node-sass');
@@ -51,7 +51,7 @@ function watchScss() {
 
 function javaScript(done){
     gulp.src('./src/javascript/**/*.js')
-    .pipe(babel({ presets: ['@babel/env']}))
+   // .pipe(babel({ presets: ['@babel/env']}))
     .pipe(gulp.dest('./dist/assets/javascript'))
     .pipe(connect.reload());
     done();

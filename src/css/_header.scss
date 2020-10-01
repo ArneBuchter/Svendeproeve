@@ -32,6 +32,8 @@
         align-self: center;
         display: flex;
         align-items: center;
+        text-decoration: none;
+        color: $header-link;
     }
 
     &__logoimg{
