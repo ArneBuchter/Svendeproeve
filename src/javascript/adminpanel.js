@@ -75,6 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     clone.querySelector('.abouts__link').setAttribute('data-id', `${element.id}`)
                     list.appendChild(clone)
                     document.querySelector('.abouts__ul').addEventListener('click', (e) => {
+                        console.log(e.target)
                         let myId = e.target.getAttribute('data-id')
                         data.forEach(element => {
                             
@@ -83,6 +84,11 @@ document.addEventListener('DOMContentLoaded', () => {
                                 document.querySelector('.abouts__message').value = element.content
                                 document.querySelector('.abouts__infoId').innerText = element.id
                                 document.querySelector('.abouts__form').style.display = 'block'
+                            }else if(e.target.getAttribute('data-id') == 0){
+                                document.querySelector('.abouts__form').style.display = 'block'
+                                document.querySelector('.abouts__infoId').innerText = data.length+1
+                                document.querySelector('#abouts__submit').innerText = 'Opret'
+                                document.querySelector('#abouts__delete').style.display = 'none'
                             }
                         });
                     })
@@ -92,6 +98,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 e.preventDefault()
         
                 if(validerName(document.querySelector('#abouts')) && validerMessage(document.querySelector('#abouts'))){
+                    if(document.querySelector('#abouts__submit').innerText == 'Opret'){
+                        fetch("http://localhost:4000/api/v1/abouts", {
+                        "method": "POST",
+                        "headers": {
+                            "Content-Type": "application/x-www-form-urlencoded",
+                            "Authorization": `Bearer ${token}` },
+                        "body": `title=${formName}&content=${formMessage}`
+                        })
+                        .then(response => console.log(response))
+                        .catch(err => console.error(err));
+                    }else{
                     let aboutsId = document.querySelector('.abouts__infoId').innerText
                     fetch(`http://localhost:4000/api/v1/abouts/${aboutsId}`, {
                         "method": "PUT",
@@ -103,9 +120,21 @@ document.addEventListener('DOMContentLoaded', () => {
                       })
                       .then(response => console.log(response))
                       .catch(err => console.error(err));
+                    }
                 }else{
                     document.querySelector('.form__udfyld').innerHTML += 'Et eller flere felter er ikke udfyldt korrekt. De er markeret med rødt.'
                 } 
+            })
+            document.querySelector('#abouts__delete').addEventListener('click', (e) => {
+                e.preventDefault()
+                let myId = document.querySelector('.abouts__infoId').innerText
+                fetch(`http://localhost:4000/api/v1/abouts/${myId}`, {
+                "method": "DELETE",
+                "headers": {
+                    "Authorization": `Bearer ${token}`}
+                })
+                .then(response => console.log(response))
+                .catch(err => console.error(err));
             })
     
 

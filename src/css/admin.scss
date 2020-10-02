@@ -9,6 +9,7 @@
     padding: 2em;
 
     &__formbox{
+        position: relative;
         background-color: $footer-color;
         width: 250px;
         height: 250px;
@@ -36,4 +37,39 @@
     }
 }
 
+.spinner{
+    z-index: 2;
+    position: absolute;
+    top: 45vh;
+    left: 50%;
+    margin-left: -1.5em;
+    width: 3em;
+    height: 3em;
+    opacity: 0;
+    border: 5px solid;
+    border-color: tomato transparent orange transparent;
+    border-radius: 50%;
+    animation: animateSpinner 500ms infinite linear;
+}
+
+@keyframes animateSpinner {
+    15%{
+        transform: rotate(60deg);
+    }
+    30%{
+        transform: rotate(90deg);
+    }
+    45%{
+        transform: rotate(150deg);
+    }
+    60%{
+        transform: rotate(220deg);
+    }
+    75%{
+        transform: rotate(290deg);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
+}
 @import 'footer'
