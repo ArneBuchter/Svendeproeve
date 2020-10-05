@@ -22,13 +22,11 @@ document.addEventListener('DOMContentLoaded', () => {
         if(validerImage(document.querySelector('#image__form'))){
             let file = document.querySelector('input[type=file]').files[0]
             const form = new FormData();
-            console.log(file)
-            form.append('file', `${file}`);
+            form.append('file', file);
 
             fetch("http://localhost:4000/api/v1/assets", {
             "method": "POST",
             "headers": {
-                "Content-Type": "multipart/form-data",
                 "Authorization": `Bearer ${token}`
             },
             "body": form
