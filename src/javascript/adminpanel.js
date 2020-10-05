@@ -219,7 +219,6 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(response => console.log(response))
         .catch(err => console.error(err));
     })
-    
     fetch(`${animals}`,{
         'method': 'GET'
     }) //fetch
@@ -365,9 +364,9 @@ document.addEventListener('DOMContentLoaded', () => {
         
             if(validerImage(document.querySelector('#image__form'))){
                 file = document.querySelector('input[type=file]').files[0]
-                const form = new FormData();
-                console.log(formImage)
-                form.append(`${formImage}`, "null");
+                /* const form = new FormData(); */
+                console.log(file)
+                /* form.append('file', `${formImage}`); */
 
                 fetch("http://localhost:4000/api/v1/assets", {
                 "method": "POST",
@@ -375,7 +374,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     "Content-Type": "multipart/form-data",
                     "Authorization": `Bearer ${token}`
                 },
-                "body": form
+                "body": `file=${file}`
                 })
                 .then(response => console.log(response))
                 .catch(err => console.error(err));
@@ -385,7 +384,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     
     function validerImage(form){
-        formImage = document.querySelector('input[type=file]').files[0]
 
           return true;
     }
