@@ -23,8 +23,8 @@ document.addEventListener('DOMContentLoaded', () => {
         let thismonth = d.getUTCMonth()
         let thisyear = d.getUTCFullYear()
         let year = thisyear - thatyear
-        let month = thismonth -thatmonth
-        let day = thisday - thatday
+        let month = thismonth - thatmonth
+        let day = thatday - thisday
 
         let arrived =year + ' år '+ month + ' måneder og ' + day +' dage siden'
 

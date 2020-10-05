@@ -4,10 +4,39 @@ document.addEventListener('DOMContentLoaded', () => {
     const abouts = 'http://localhost:4000/api/v1/abouts'
     const volunteers = 'http://localhost:4000/api/v1/volunteers'
     const animals = 'http://localhost:4000/api/v1/animals'
-    let file
 
     const token = sessionStorage.getItem("token");
-    uploadImage()
+
+    fetch("http://localhost:4000/api/v1/assets", {
+        "method": "GET"
+    })
+    .then(response => response.json())
+    .then(data => {
+        document.querySelector('.image__infoAssetId').innerText = data.length+1
+    })
+    .catch(err => console.error(err));
+
+    document.querySelector('#image__submit').addEventListener('click', (e) => {
+        e.preventDefault()
+    
+        if(validerImage(document.querySelector('#image__form'))){
+            let file = document.querySelector('input[type=file]').files[0]
+            const form = new FormData();
+            console.log(file)
+            form.append('file', `${file}`);
+
+            fetch("http://localhost:4000/api/v1/assets", {
+            "method": "POST",
+            "headers": {
+                "Content-Type": "multipart/form-data",
+                "Authorization": `Bearer ${token}`
+            },
+            "body": form
+            })
+            .then(response => console.log(response))
+            .catch(err => console.error(err));
+        }
+    })
     
     fetch(`${sections}`,{
         'method': 'GET'
@@ -76,7 +105,6 @@ document.addEventListener('DOMContentLoaded', () => {
             clone.querySelector('.abouts__link').setAttribute('data-id', `${element.id}`)
             list.appendChild(clone)
             document.querySelector('.abouts__ul').addEventListener('click', (e) => {
-                console.log(e.target)
                 let myId = e.target.getAttribute('data-id')
                 data.forEach(element => {
                     
@@ -350,36 +378,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function uploadImage() {
-        fetch("http://localhost:4000/api/v1/assets", {
-            "method": "GET"
-        })
-        .then(response => response.json())
-        .then(data => {
-            document.querySelector('.image__infoAssetId').innerText = data.length+1
-        })
-        .catch(err => console.error(err));
 
-        document.querySelector('#image__submit').addEventListener('click', (e) => {
-            e.preventDefault()
-        
-            if(validerImage(document.querySelector('#image__form'))){
-                file = document.querySelector('input[type=file]').files[0]
-                /* const form = new FormData(); */
-                console.log(file)
-                /* form.append('file', `${formImage}`); */
-
-                fetch("http://localhost:4000/api/v1/assets", {
-                "method": "POST",
-                "headers": {
-                    "Content-Type": "multipart/form-data",
-                    "Authorization": `Bearer ${token}`
-                },
-                "body": `file=${file}`
-                })
-                .then(response => console.log(response))
-                .catch(err => console.error(err));
-            }
-        })
     }
 
     

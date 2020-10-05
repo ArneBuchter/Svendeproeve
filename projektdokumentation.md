@@ -10,6 +10,8 @@ login siden kan ses på : /admin
 brugernavn admin
 Adgangskode 1234
 
+Github adresse: https://github.com/ArneBuchter/Svendeproeve
+
 ## Vurdering af din egen indsats og gennemførelse af opgaveforløbet
 
 Jeg er godt tilfreds med min indsats for opgaven. Jeg har arbejdet intenst med projektet og holdt mig til at arbejde med projektet mellem 8.10 og 15.10 
@@ -52,7 +54,9 @@ Da der ikke fremgik af materialet hvordan "bannerne" skulle være valgte jeg at 
 
 Min sider er lavet med tredjepartsoftware fra Flickety. Det har jeg arbejdet med før og synes det var det bedste alternativ, til at begynde at kode en slider fra bunden, når vi nu kun har en uge. Den kommer med et let setup, der gør at man hurtigt kan give den f.eks. en autoplay funktion, der pauser ved scroll.
 
-### En beskrivelse af særlige punkter til bedømmelse
+## En beskrivelse af særlige punkter til bedømmelse
+
+### responsive grid
 
 Jeg vil i min css gerne fremhæve mit responsive grid, da jeg synes det er en særlig fed ting mulighed der er kommet med grid. 
 Det er en metode jeg har lært fra min css youtube guru Jen Simmons, der betyder at man næsten ikke/ slet ikke behøver at bruge mediaquery til responsivt design. Det særlige her er at cellerne selv flytter sig alt efter device. lidt som med flexwrap. se kodeeksemplet herunder.
@@ -68,14 +72,31 @@ Det er en metode jeg har lært fra min css youtube guru Jen Simmons, der betyder
 
 
 
-
 auto-fit fortæller hvor stor cellen skal være hhv min og max og derudover fortæller den også at en gridcelle skal flytte sig til næste linie, hvis der ikke er plads til flere. På den måde tilpasser gridet sig til skærmstørrelsen. Det er en super genial feature til netop præsentation af "kort" eller billeder.   
 
+### Se dyr på singleview side
 
-![test](arne.jpg)
+for at se dyrene på en detaljeside, som jeg har valgt at kalde singleview, har jeg arbejdet med url parametre. Det sker hos mig ved at man medsender dyrets id i url'en sådan her:
 
 
-Bilag placeres sidst i dokumentation:
-• Kanban board
+    clone.querySelector('.adopterdyr__card').href = `/singleview/index.html?id=${element.id}
+
+    let params = new URLSearchParams(document.location.search);
+    const id = parseInt(params.get('id'));
+    const animal = `http://localhost:4000/api/v1/animals/${id}`
+
+
+Den første linie kode er en linie fra det template der skaber kortet (info om et givent dyr). Den linie der vises fortæller os at kortets wrapper, som er et a tag hvor href'en henviser til singleview siden også sender dyrets unikke id med i en query
+
+De tre næste linier er fra singleview siden hvor vi så trækker informationerne ud fra url'en og putter id'et i api'ets get single animal endpoint. på den måde kan jeg nu vise en detaljeside med præcis det dyr brugeren ønsker at se.
+
+
+## Kanban board
+
+Mit kanban board kan ses på github i mit repo under github projects og her på dette billede. Der ligger en lang række opgaver i Done, som ikke kunne komme med på kun et billede
+
+![kanbanboard](kanban.jpg)
+
+
 
 
