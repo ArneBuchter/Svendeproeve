@@ -4,9 +4,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const abouts = 'http://localhost:4000/api/v1/abouts'
     const volunteers = 'http://localhost:4000/api/v1/volunteers'
     const animals = 'http://localhost:4000/api/v1/animals'
+    let file
 
     const token = sessionStorage.getItem("token");
-
+    uploadImage()
     
     fetch(`${sections}`,{
         'method': 'GET'
@@ -37,95 +38,95 @@ document.addEventListener('DOMContentLoaded', () => {
     })
 
             
-            document.querySelector('#sections__submit').addEventListener('click', (e) => {
-                e.preventDefault()
-                if(validerName(document.querySelector('#sections')) && validerText(document.querySelector('#sections'))){
-                    let sectionsId = document.querySelector('.sections__infoId').innerText
-                    let sectionsAssetId = document.querySelector('.sections__infoAssetId').innerText
-                    fetch(`http://localhost:4000/api/v1/adoptsections/${sectionsId}`, {
-                        "method": "PUT",
-                        "headers": {
-                          "Content-Type": "application/x-www-form-urlencoded",
-                          "Authorization": `Bearer ${token}`
-                        },
-                        "body": `title=${formName}&content=${formText}&assetId=${sectionsAssetId}`
-                      })
-                      .then(response => console.log(response))
-                      .catch(err => console.error(err));
-                }else{
-                    document.querySelector('.form__udfyld').innerHTML += 'Et eller flere felter er ikke udfyldt korrekt. De er markeret med rødt.'
-                } 
-            })
+    document.querySelector('#sections__submit').addEventListener('click', (e) => {
+        e.preventDefault()
+        if(validerName(document.querySelector('#sections')) && validerText(document.querySelector('#sections'))){
+            let sectionsId = document.querySelector('.sections__infoId').innerText
+            let sectionsAssetId = document.querySelector('.sections__infoAssetId').innerText
+            fetch(`http://localhost:4000/api/v1/adoptsections/${sectionsId}`, {
+                "method": "PUT",
+                "headers": {
+                    "Content-Type": "application/x-www-form-urlencoded",
+                    "Authorization": `Bearer ${token}`
+                },
+                "body": `title=${formName}&content=${formText}&assetId=${sectionsAssetId}`
+                })
+                .then(response => console.log(response))
+                .catch(err => console.error(err));
+        }else{
+            document.querySelector('.form__udfyld').innerHTML += 'Et eller flere felter er ikke udfyldt korrekt. De er markeret med rødt.'
+        } 
+    })
         
     
 
 
 
-            fetch(`${abouts}`,{
-                'method': 'GET'
-    
-            }) //fetch
-            .then(response => response.json())
-            .then(data => {
-                const template = document.querySelector('.abouts__template')
-                const list = document.querySelector('.abouts__ul')
+    fetch(`${abouts}`,{
+        'method': 'GET'
+
+    }) //fetch
+    .then(response => response.json())
+    .then(data => {
+        const template = document.querySelector('.abouts__template')
+        const list = document.querySelector('.abouts__ul')
+        data.forEach(element => {
+            let clone = template.content.cloneNode(true)
+            clone.querySelector('.abouts__link').innerText = element.title
+            clone.querySelector('.abouts__link').setAttribute('data-id', `${element.id}`)
+            list.appendChild(clone)
+            document.querySelector('.abouts__ul').addEventListener('click', (e) => {
+                console.log(e.target)
+                let myId = e.target.getAttribute('data-id')
                 data.forEach(element => {
-                    let clone = template.content.cloneNode(true)
-                    clone.querySelector('.abouts__link').innerText = element.title
-                    clone.querySelector('.abouts__link').setAttribute('data-id', `${element.id}`)
-                    list.appendChild(clone)
-                    document.querySelector('.abouts__ul').addEventListener('click', (e) => {
-                        console.log(e.target)
-                        let myId = e.target.getAttribute('data-id')
-                        data.forEach(element => {
-                            
-                            if(element.id == myId){
-                                document.querySelector('.abouts__overskrift').value = element.title
-                                document.querySelector('.abouts__message').value = element.content
-                                document.querySelector('.abouts__infoId').innerText = element.id
-                                document.querySelector('.abouts__form').style.display = 'block'
-                            }else if(e.target.getAttribute('data-id') == 0){
-                                document.querySelector('.abouts__form').style.display = 'block'
-                                document.querySelector('.abouts__infoId').innerText = data.length+1
-                                document.querySelector('#abouts__submit').innerText = 'Opret'
-                                document.querySelector('#abouts__delete').style.display = 'none'
-                            }
-                        });
-                    })
+                    
+                    if(element.id == myId){
+                        document.querySelector('.abouts__overskrift').value = element.title
+                        document.querySelector('.abouts__message').value = element.content
+                        document.querySelector('.abouts__infoId').innerText = element.id
+                        document.querySelector('.abouts__form').style.display = 'block'
+                    }else if(e.target.getAttribute('data-id') == 0){
+                        document.querySelector('.abouts__form').style.display = 'block'
+                        document.querySelector('.abouts__infoId').innerText = data.length+1
+                        document.querySelector('#abouts__submit').innerText = 'Opret'
+                        document.querySelector('#abouts__delete').style.display = 'none'
+                    }
                 });
             })
-            document.querySelector('#abouts__submit').addEventListener('click', (e) => {
-                e.preventDefault()
-        
-                if(validerName(document.querySelector('#abouts')) && validerMessage(document.querySelector('#abouts'))){
-                    if(document.querySelector('#abouts__submit').innerText == 'Opret'){
-                        fetch("http://localhost:4000/api/v1/abouts", {
-                        "method": "POST",
-                        "headers": {
-                            "Content-Type": "application/x-www-form-urlencoded",
-                            "Authorization": `Bearer ${token}` },
-                        "body": `title=${formName}&content=${formMessage}`
-                        })
-                        .then(response => console.log(response))
-                        .catch(err => console.error(err));
-                    }else{
-                    let aboutsId = document.querySelector('.abouts__infoId').innerText
-                    fetch(`http://localhost:4000/api/v1/abouts/${aboutsId}`, {
-                        "method": "PUT",
-                        "headers": {
-                          "Content-Type": "application/x-www-form-urlencoded",
-                          "Authorization": `Bearer ${token}`
-                        },
-                        "body": `title=${formName}&content=${formMessage}`
-                      })
-                      .then(response => console.log(response))
-                      .catch(err => console.error(err));
-                    }
-                }else{
-                    document.querySelector('.form__udfyld').innerHTML += 'Et eller flere felter er ikke udfyldt korrekt. De er markeret med rødt.'
-                } 
-            })
-            document.querySelector('#abouts__delete').addEventListener('click', (e) => {
+        });
+    })
+    document.querySelector('#abouts__submit').addEventListener('click', (e) => {
+        e.preventDefault()
+
+        if(validerName(document.querySelector('#abouts')) && validerMessage(document.querySelector('#abouts'))){
+            if(document.querySelector('#abouts__submit').innerText == 'Opret'){
+                fetch("http://localhost:4000/api/v1/abouts", {
+                "method": "POST",
+                "headers": {
+                    "Content-Type": "application/x-www-form-urlencoded",
+                    "Authorization": `Bearer ${token}` },
+                "body": `title=${formName}&content=${formMessage}`
+                })
+                .then(response => console.log(response))
+                .catch(err => console.error(err));
+            }else{
+            let aboutsId = document.querySelector('.abouts__infoId').innerText
+            fetch(`http://localhost:4000/api/v1/abouts/${aboutsId}`, {
+                "method": "PUT",
+                "headers": {
+                    "Content-Type": "application/x-www-form-urlencoded",
+                    "Authorization": `Bearer ${token}`
+                },
+                "body": `title=${formName}&content=${formMessage}`
+                })
+                .then(response => console.log(response))
+                .catch(err => console.error(err));
+            }
+        }else{
+            document.querySelector('.form__udfyld').innerHTML += 'Et eller flere felter er ikke udfyldt korrekt. De er markeret med rødt.'
+        } 
+    })
+    document.querySelector('#abouts__delete').addEventListener('click', (e) => {
                 e.preventDefault()
                 let myId = document.querySelector('.abouts__infoId').innerText
                 fetch(`http://localhost:4000/api/v1/abouts/${myId}`, {
@@ -138,12 +139,12 @@ document.addEventListener('DOMContentLoaded', () => {
             })
     
 
-            fetch(`${volunteers}`,{
-                'method': 'GET'
+    fetch(`${volunteers}`,{
+        'method': 'GET'
 
-            }) //fetch
-            .then(response => response.json())
-            .then(data => {
+    }) //fetch
+    .then(response => response.json())
+    .then(data => {
                 let template = document.querySelector('.volunteers__template')
                 let list = document.querySelector('.volunteers__ul')
                 data.forEach(element => {
@@ -152,121 +153,157 @@ document.addEventListener('DOMContentLoaded', () => {
                     clone.querySelector('.volunteers__link').setAttribute('data-id', `${element.id}`)
                     list.appendChild(clone)
                     document.querySelector('.volunteers__ul').addEventListener('click', (e) => {
-                        //console.log(e.target)
                         let myId = e.target.getAttribute('data-id')
-                        //console.log(myId)
                         data.forEach(element => {
-                           // console.log(element)
                             if(element.id == myId){
                                 document.querySelector('.volunteers__overskrift').value = element.title
                                 document.querySelector('.volunteers__message').value = element.content
                                 document.querySelector('.volunteers__tekst').value = element.extra
                                 document.querySelector('.volunteers__infoId').innerText = myId
-                                document.querySelector('.volunteers__infoAssetId').innerText = element.assetId
+                                document.querySelector('.volunteers__infoAssetId').value = element.assetId
                                 document.querySelector('.volunteers__form').style.display = 'block'
                             }else if(e.target.getAttribute('data-id') == undefined){
                                 document.querySelector('.volunteers__form').style.display = 'block'
                                 document.querySelector('.volunteers__infoId').innerText = data.length+1
-                                document.querySelector('.volunteers__infoAssetId').innerText = 'NY'
                                 document.querySelector('#Volunteers__submit').innerText = 'Opret'
                             }
                         });
                     })
                 });
             })
-            document.querySelector('#Volunteers__submit').addEventListener('click', (e) => {
-                e.preventDefault()
-        
-                if(validerName(document.querySelector('#volunteers'))){
-                    if(validerMessage(document.querySelector('#volunteers')) && validerText(document.querySelector('#volunteers'))){
-                        let volunteersAssetId = document.querySelector('.volunteers__infoAssetId').innerText
-                        let volunteersId = document.querySelector('.volunteers__infoId').innerText
-                        console.log(volunteersAssetId)
-                        if(volunteersAssetId == 'NY'){
-                            fetch("http://localhost:4000/api/v1/volunteers", {
-                            "method": "POST",
-                            "headers": {
-                                "Content-Type": "application/x-www-form-urlencoded",
-                                "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoxLCJ1c2VybmFtZSI6ImFkbWluIiwicGFzc3dvcmQiOiIkMmEkMTUkdXlKQjU5OHpqQ0VpQno2cUY0UDlLLlhrUGRESXd5ajJjd1FXU1lRczNIbHY1TUZsbUxJTlciLCJjcmVhdGVkQXQiOiIyMDIwLTA1LTE3VDE4OjE5OjM5LjE2OVoiLCJ1cGRhdGVkQXQiOiIyMDIwLTA1LTE3VDE4OjE5OjM5LjE2OVoifSwiaWF0IjoxNTg5NzQzNDI4LCJleHAiOjE1ODk3NDcwMjh9.RQlQN6Aj8Ypvso2B81fPLfGZ9Vj9YelqHLT9KKGFxqE"
-                            },
-                            "body": `title=${formName}&content=${formMessage}&extra=${formText}&assetId=13`
-                            })
-                            .then(response => console.log(response))
-                            .catch(err => console.error(err));
-                        }else{
-                            fetch(`http://localhost:4000/api/v1/volunteers/${volunteersId}`, {
-                                "method": "PUT",
-                                "headers": {
-                                "Content-Type": "application/x-www-form-urlencoded",
-                                "Authorization": `Bearer ${token}`
-                                },
-                                "body": `title=${formName}&content=${formMessage}&extra=${formText}&assetId=${volunteersAssetId}`
-                            })
-                            .then(response => console.log(response))
-                            .catch(err => console.error(err));
-                        }
-                    }
-                }else{
-                    document.querySelector('.form__udfyld').innerHTML += 'Et eller flere felter er ikke udfyldt korrekt. De er markeret med rødt.'
-                }                
-            })
-    
-    let dyr = [];
-    document.querySelector('.animals__ul').addEventListener('click', (e) => {
-        if(e.target.classList.contains('animals-one')){
-            fetch(`${animals}`,{
-                'method': 'GET'
-            }) //fetch
-            .then(response => response.json())
-            .then(data => {
-                data.forEach(element => {
-                    dyr.push({navn: element.name, id: element.id, tekst: element.description, asset: element.asset.url, alder: element.age, assetId: element.assetId})
-                });
-                let template = document.querySelector('.animals__template')
-                let list = document.querySelector('.animals__linkul')
-                dyr.forEach((pet, i) => {
-                    let clone = template.content.cloneNode(true)
-                    clone.querySelector('.animals__li').innerText = pet.navn
-                    clone.querySelector('.animals__li').dataset.id = i+1
-                    list.appendChild(clone)
-                    document.querySelector('.animals__linkul').addEventListener('click', (e) => {
-                        if(e.target.getAttribute('data-id') == pet.id){
-                            document.querySelector('.animals__overskrift').value = pet.navn
-                            document.querySelector('.animals__tekst').value = pet.tekst
-                            document.querySelector('.animals__age').value = pet.alder
-                            document.querySelector('.animals__infoId').innerText = pet.id
-                            document.querySelector('.animals__infoAssetId').innerText = pet.assetId
-                            document.querySelector('.animals__form').style.display = 'block'
-                        }
-                    });
-                })              
-            })
-            document.querySelector('#animals__submit').addEventListener('click', (e) => {
-                e.preventDefault()
-        
-                if(validerName(document.querySelector('#animals')) && validerMessage(document.querySelector('#animals'))){
-                    let animalsAssetId = document.querySelector('.animals__infoAssetId').innerText
-                    let animalsId = document.querySelector('.animals__infoId').innerText
-                    let animalsAge = document.querySelector('.animals__age').value
+    document.querySelector('#Volunteers__submit').addEventListener('click', (e) => {
+        e.preventDefault()
 
-                    fetch(`http://localhost:4000/api/v1/animals/${animalsId}`, {
+        if(validerName(document.querySelector('#volunteers'))){
+            if(validerMessage(document.querySelector('#volunteers')) && validerText(document.querySelector('#volunteers'))){
+                let volunteersAssetId = document.querySelector('.volunteers__infoAssetId').innerText
+                let volunteersId = document.querySelector('.volunteers__infoId').innerText
+
+                console.log(volunteersAssetId)
+                if(volunteersAssetId == 'NY'){
+                    fetch("http://localhost:4000/api/v1/volunteers", {
+                    "method": "POST",
+                    "headers": {
+                        "Content-Type": "application/x-www-form-urlencoded",
+                        "Authorization": `Bearer ${token}`},
+                    "body": `title=${formName}&content=${formMessage}&extra=${formText}&assetId=${volunteersAssetId}`
+                    })
+                    .then(response => console.log(response))
+                    .catch(err => console.error(err));
+
+                }else{
+                    fetch(`http://localhost:4000/api/v1/volunteers/${volunteersId}`, {
                         "method": "PUT",
                         "headers": {
-                          "Content-Type": "application/x-www-form-urlencoded",
-                          "Authorization": `Bearer ${token}`
+                        "Content-Type": "application/x-www-form-urlencoded",
+                        "Authorization": `Bearer ${token}`
                         },
-                        "body": `title=${formName}&content=${formMessage}&age=${animalsAge}&assetId=${animalsAssetId}`
-                      })
-                      .then(response => console.log(response))
-                      .catch(err => console.error(err));
-                }else{
-                    document.querySelector('.form__udfyld').innerHTML += 'Et eller flere felter er ikke udfyldt korrekt. De er markeret med rødt.'
-                } 
-            })
+                        "body": `title=${formName}&content=${formMessage}&extra=${formText}&assetId=${volunteersAssetId}`
+                    })
+                    .then(response => console.log(response))
+                    .catch(err => console.error(err));
+                }
+            }
+        }else{
+            document.querySelector('.form__udfyld').innerHTML += 'Et eller flere felter er ikke udfyldt korrekt. De er markeret med rødt.'
+        }                
+    })
+    document.querySelector('#Volunteers__delete').addEventListener('click', (e) => {
+        e.preventDefault()
+        let myId = document.querySelector('.volunteers__infoId').innerText
+        fetch(`http://localhost:4000/api/v1/volunteers/${myId}`, {
+            "method": "DELETE",
+            "headers": {
+                "Authorization": `Bearer ${token} `  }
+        })
+        .then(response => console.log(response))
+        .catch(err => console.error(err));
+    })
+    
+    fetch(`${animals}`,{
+        'method': 'GET'
+    }) //fetch
+    .then(response => response.json())
+    .then(data => {
+        let template = document.querySelector('.animals__template')
+        let list = document.querySelector('.animals__ul')
+        data.forEach(pet => {
+            
+            let clone = template.content.cloneNode(true)
+            clone.querySelector('.animals__link').innerText = pet.name
+            clone.querySelector('.animals__link').setAttribute('data-id', `${pet.id}`) 
+            list.appendChild(clone)
+        });
+        document.querySelector('.animals__ul').addEventListener('click', (e) => {
+            let myId = e.target.getAttribute('data-id')
+            data.forEach(element => {
+                
+                if(element.id == myId){
+                    document.querySelector('.animals__overskrift').value = element.name
+                    document.querySelector('.animals__tekst').value = element.description
+                    document.querySelector('.animals__age').value = element.age
+                    document.querySelector('.animals__infoId').innerText = element.id
+                    document.querySelector('.animals__infoAssetId').value = element.assetId
+                    document.querySelector('.animals__form').style.display = 'block'
+                }else if(e.target.getAttribute('data-id') == 0){
+                    document.querySelector('.animals__form').style.display = 'block'
+                    document.querySelector('.animals__infoId').innerText = data.length+1
+                    document.querySelector('#animals__submit').innerText = 'Opret'
+                }
+            });
+        });             
+    })
+    document.querySelector('#animals__submit').addEventListener('click', (e) => {
+        e.preventDefault()
+
+        if(document.querySelector('#animals__submit').innerText == 'Opret'){
+            let formAge = document.querySelector('.animals__age').value
+            if(validerName(document.querySelector('#animals')) && validerMessage(document.querySelector('#animals'))){
+                fetch("http://localhost:4000/api/v1/animals", {
+                "method": "POST",
+                "headers": {
+                    "Content-Type": "application/x-www-form-urlencoded",
+                    "Authorization": `Bearer ${token}`},
+                "body": `name=${formName}&description=${formMessage}&age=${formAge}&assetId=10`
+                })
+                .then(response => console.log(response))
+                .catch(err => console.error(err));
+            }else{
+                document.querySelector('.form__udfyld').innerHTML += 'Et eller flere felter er ikke udfyldt korrekt. De er markeret med rødt.'
+            }
+        }else{
+
+            if(validerName(document.querySelector('#animals')) && validerMessage(document.querySelector('#animals'))){
+                let animalsAssetId = document.querySelector('.animals__infoAssetId').innerText
+                let animalsId = document.querySelector('.animals__infoId').innerText
+                let animalsAge = document.querySelector('.animals__age').value
+
+                fetch(`http://localhost:4000/api/v1/animals/${animalsId}`, {
+                    "method": "PUT",
+                    "headers": {
+                    "Content-Type": "application/x-www-form-urlencoded",
+                    "Authorization": `Bearer ${token}`
+                    },
+                    "body": `title=${formName}&content=${formMessage}&age=${animalsAge}&assetId=${animalsAssetId}`
+                })
+                .then(response => console.log(response))
+                .catch(err => console.error(err));
+            }else{
+                document.querySelector('.form__udfyld').innerHTML += 'Et eller flere felter er ikke udfyldt korrekt. De er markeret med rødt.'
+            } 
         }
     })
-
-    
+    document.querySelector('#animals__delete').addEventListener('click', (e) => {
+        e.preventDefault()
+        let myId = document.querySelector('.animals__infoId').innerText
+        fetch(`http://localhost:4000/api/v1/animals/${myId}`, {
+        "method": "DELETE",
+        "headers": {
+            "Authorization": `Bearer ${token}  `       }
+        })
+        .then(response => console.log(response))
+        .catch(err => console.error(err));
+            })
     
    
      function validerName(form){  
@@ -304,15 +341,6 @@ document.addEventListener('DOMContentLoaded', () => {
         return true;
     }
 
-    function validerImage(form){
-        if(form.image.value != undefined){
-            document.querySelector('.imageinfo').innerHTML = "Der er ikke valgt et billede"
-            return false;
-        }
-
-          return true;
-    }
-
     function redo(qs) {
         document.querySelector(qs).style.backgroundColor = '#ffaaaa';
         return false;
@@ -320,6 +348,46 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function ok(qs) {
     document.querySelector(qs).style.backgroundColor = 'transparent';
+    }
+
+    function uploadImage() {
+        fetch("http://localhost:4000/api/v1/assets", {
+            "method": "GET"
+        })
+        .then(response => response.json())
+        .then(data => {
+            document.querySelector('.image__infoAssetId').innerText = data.length+1
+        })
+        .catch(err => console.error(err));
+
+        document.querySelector('#image__submit').addEventListener('click', (e) => {
+            e.preventDefault()
+        
+            if(validerImage(document.querySelector('#image__form'))){
+                file = document.querySelector('input[type=file]').files[0]
+                const form = new FormData();
+                console.log(formImage)
+                form.append(`${formImage}`, "null");
+
+                fetch("http://localhost:4000/api/v1/assets", {
+                "method": "POST",
+                "headers": {
+                    "Content-Type": "multipart/form-data",
+                    "Authorization": `Bearer ${token}`
+                },
+                "body": form
+                })
+                .then(response => console.log(response))
+                .catch(err => console.error(err));
+            }
+        })
+    }
+
+    
+    function validerImage(form){
+        formImage = document.querySelector('input[type=file]').files[0]
+
+          return true;
     }
 
 })

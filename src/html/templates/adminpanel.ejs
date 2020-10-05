@@ -8,10 +8,26 @@
 </header>
 
 <main class="adminpanel">
+    <!--...image-->
+
+    <section class="image">
+        <p class="image__text">
+            Upload et billede. husk det asset id der står billedet får, 
+            og referer til det, når du skal bruge det f.eks. til et opslag i dyr hos os.
+        </p>
+        <form class="image__form adminpanel__form" action="" method="post" id="image__form">
+            <p class="image__info">assetId <span class="image__infoAssetId"></span></p>
+            <label for="image">udskift billedet</label>
+            <input type="file" name="image" id="image"><p class="imageinfo"></p>
+            <button class="adminpanel__button" type="submit" id="image__submit">Upload</button>
+            <p class="imaginfo"></p>
+        </form>
+    </section>
 
     <!--........sections.......-->
     <section class="sections">
         <p class="adminpanel__text">vælg at redigere en af følgende sektioner</p>
+
         <nav class="sections__choise">
             <ul class="adminpanel__ul sections__ul">
 
@@ -22,12 +38,12 @@
             <li class="sections__link"></li>
         </template>
         <form class="sections__form adminpanel__form" action="" method="post" id="sections">
-            <p class="sections__info">informationer: id <span class="sections__infoId"></span> assetId <span class="sections__infoAssetId"></span></p>
-            <label for="image">udskift billedet</label>
-            <input type="file" name="image" id="image"><p class="imageinfo"></p>
-            <input class="adminpanel__overskrift sections__overskrift" type="text" name="name" id="name" value="" placeholder="Overskrift">
-            <input class="adminpanel__tekst sections__tekst" type="text" name="text" id="text" value="" placeholder="Kort tekst">
-            <button class="adminpanel__button" type="submit" id="sections__submit">Opdater</button>
+            <div class="adminpanel__styler">
+                <p class="sections__info">informationer: id <span class="sections__infoId"></span> assetId <span class="sections__infoAssetId"></span></p>
+                <input class="adminpanel__overskrift sections__overskrift" type="text" name="name" id="name" value="" placeholder="Overskrift">
+                <input class="adminpanel__tekst sections__tekst" type="text" name="text" id="text" value="" placeholder="Kort tekst">
+                <button class="adminpanel__button" type="submit" id="sections__submit">Opdater</button>
+            </div>
         </form>
     </section>
 
@@ -43,11 +59,15 @@
             <li class="abouts__link"></li>
         </template>
         <form class="abouts__form adminpanel__form" action="" method="post" id="abouts">
-            <p class="abouts__info">Id <span class="abouts__infoId"></span></p>
-            <input class="adminpanel__overskrift abouts__overskrift" type="text" name="name" id="name" value="" placeholder="Overskrift">
-            <textarea class="abouts__message" value="" name="message" id="message" id="" cols="30" rows="10" placeholder="Describe your item"></textarea>
-            <button class="adminpanel__button" type="submit" id="abouts__submit">Opdater</button>
-            <button class="adminpanel__button adminpanel__button-rød" type="submit" id="abouts__delete">Slet</button>
+            <div class="adminpanel__styler">
+                <p class="abouts__info">Id <span class="abouts__infoId"></span></p>
+                <input class="adminpanel__overskrift abouts__overskrift" type="text" name="name" id="name" value="" placeholder="Overskrift">
+                <textarea class="abouts__message" value="" name="message" id="message" id="" cols="30" rows="10" placeholder="Describe your item"></textarea>
+                <div class="adminpanel__buttons">
+                    <button class="adminpanel__button" type="submit" id="abouts__submit">Opdater</button>
+                    <button class="adminpanel__button adminpanel__button-rød" type="submit" id="abouts__delete">Slet</button>
+                </div>
+            </div>        
         </form>
     </section>
 
@@ -64,14 +84,17 @@
         </template>
 
         <form class="adminpanel__form volunteers__form" action="" method="post" id="volunteers">
-            <p class="volunteers__info">Id <span class="volunteers__infoId"></span> AssetId <span class="volunteers__infoAssetId"></span></p>
-            <input class="adminpanel__overskrift  volunteers__overskrift" value="" type="text" name="name" id="name" placeholder="Overskrift">
-            <label for="image">udskift billedet</label>
-            <input class="volunteers__image" type="file" name="image" id="image"><p class="imageinfo"></p>
-            <textarea class="volunteers__message" value="" name="message" id="message" cols="30" rows="10" placeholder="Describe your item"></textarea>
-            <input class="adminpanel__tekst volunteers__tekst" type="text" name="text" id="text" placeholder="fodnote" value="">
-            <button class="adminpanel__button" type="submit" id="Volunteers__submit">Opdater</button>
-            <button class="adminpanel__button adminpanel__button-rød" type="submit" id="Volunteers__delete">Slet</button>
+            <div class="adminpanel__styler">
+                <p class="volunteers__info">Id <span class="volunteers__infoId"></span></p>
+                <label for="AssetId">AssetId</label><input class="volunteers__infoAssetId" name="AssetId" id="AssetId" value="tilføj id">
+                <input class="adminpanel__overskrift  volunteers__overskrift" value="" type="text" name="name" id="name" placeholder="Overskrift">
+                <textarea class="volunteers__message" value="" name="message" id="message" cols="30" rows="10" placeholder="Describe your item"></textarea>
+                <input class="adminpanel__tekst volunteers__tekst" type="text" name="text" id="text" placeholder="fodnote" value="">
+                <div class="adminpanel__buttons">
+                    <button class="adminpanel__button" type="submit" id="Volunteers__submit">Opdater</button>
+                    <button class="adminpanel__button adminpanel__button-rød" type="submit" id="Volunteers__delete">Slet</button>
+                </div>
+            </div>    
         </form>
     </section>
 
@@ -80,25 +103,27 @@
         <p class="adminpanel__text">vælg at redigere en af følgende Dyr hos os opslag eller tilføj ny</p>
         <nav class="animals__choise">
             <ul class="adminpanel__ul animals__ul">
-                <li class="animals__link animals-one" data-id="1" id="animals-one">Ret/slet eksisterende dyr</li>
-                <ul class="animals__linkul"></ul>
-                <li class="animals__link" data-id="2" id="animals-four">Tilføj ny</li>
+                <li class="animals__link" data-id="0" id="animals-four">Tilføj ny</li>
             </ul>
         </nav>
 
         <template class="animals__template">
-            <li class="animals__li" data-id=""></li>
+            <li class="animals__link" data-id=""></li>
         </template>
 
         <form class="adminpanel__form animals__form" action="" method="post" id="animals">
-            <p class="animals__info">Id <span class="animals__infoId"></span> AssetId <span class="animals__infoAssetId"></span></p>
-            <label for="image">udskift billedet</label>
-            <input type="file" name="image" id="image"><p class="imageinfo"></p>
-            <input class="adminpanel__overskrift animals__overskrift" type="text" name="name" id="name" placeholder="Navn" value="">
-            <textarea class="animals__tekst" name="message" id="message" id="" cols="30" rows="10" value="" placeholder="Describe your item"></textarea>
-            <input class="adminpanel__tekst animals__age" type="number" name="age" id="age" value="" placeholder="Alder">
-            <button class="adminpanel__button" type="submit" id="animals__submit">Opdater</button>
-            <button class="adminpanel__button adminpanel__button-rød" type="submit" id="animals__delete">Slet</button>
+            <div class="adminpanel__styler">
+                <p class="animals__info">Id <span class="animals__infoId"></span></p>
+                <label for="AssetId">AssetId</label><input class="animals__infoAssetId" name="AssetId" id="AssetId" value="tilføj id">
+                <input class="adminpanel__overskrift animals__overskrift" type="text" name="name" id="name" placeholder="Navn" value="">
+                <textarea class="animals__tekst" name="message" id="message" id="" cols="30" rows="10" value="" placeholder="Describe your item"></textarea>
+                <label for="age">Alder</label>
+                <input class="adminpanel__tekst animals__age" type="number" name="age" id="age" value="" placeholder="Alder">
+                <div class="animals__buttons">
+                    <button class="adminpanel__button" type="submit" id="animals__submit">Opdater</button>
+                    <button class="adminpanel__button adminpanel__button-rød" type="submit" id="animals__delete">Slet</button>
+                </div>
+            </div>
         </form>
     </section>
 

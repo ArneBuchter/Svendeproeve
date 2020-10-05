@@ -34,6 +34,11 @@
             background-color: red;
         }
     }
+
+    &__styler{
+        display: flex;
+        flex-direction: column;
+    }
 }
 
 .sections{
@@ -86,10 +91,17 @@
 
     &__form{
         display: none;
+
     }
 
     &__link{
         color: $important-text;
+        list-style: none;
     }
+}
+
+.image{
+    width: $innerwidth;
+    margin: auto;
 }
 @import 'footer'
