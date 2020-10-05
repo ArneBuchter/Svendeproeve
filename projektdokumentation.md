@@ -66,10 +66,13 @@ Det er en metode jeg har lært fra min css youtube guru Jen Simmons, der betyder
         gap: 1em;
     }
 
-    auto-fit fortæller hvor stor cellen skal være hhv min og max og derudover fortæller den også at en gridcelle skal flytte sig til næste linie, hvis der ikke er plads til flere. På den måde tilpasser gridet sig til skærmstørrelsen. Det er en super genial feature til netop præsentation af "kort" eller billeder.   
 
-    ![test](arne.jpg)
 
+
+auto-fit fortæller hvor stor cellen skal være hhv min og max og derudover fortæller den også at en gridcelle skal flytte sig til næste linie, hvis der ikke er plads til flere. På den måde tilpasser gridet sig til skærmstørrelsen. Det er en super genial feature til netop præsentation af "kort" eller billeder.   
+
+
+![test](arne.jpg)
 
 
 Bilag placeres sidst i dokumentation:
